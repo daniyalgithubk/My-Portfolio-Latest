@@ -9,36 +9,39 @@ import Skills from './components/Skills/Skills'
 import CV from './components/CV/CV'
 import { Routes, Route } from 'react-router-dom'
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect , useState } from "react";
+import MobileMenuButton from './components/Sidebar/MobileMenuButton'
 
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const theme = useSelector((state) => state.theme.theme);
 
-
   return (
-    <div className={`flex h-screen ${theme === "dark" ? "dark" : ""}`}>
-      <div className="flex h-screen w-full  bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
-      
-      <Sidebar />
+    <div className={`${theme === "dark" ? "dark" : ""}`}>
+      <div className="flex h-screen overflow-hidden">
 
-      <div className="flex-1 overflow-y-auto">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/education" element={<Education />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/cv" element={<CV />} />
-        </Routes>
+        <MobileMenuButton isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+
+        <Sidebar
+          isOpen={isSidebarOpen}
+          setIsOpen={setIsSidebarOpen}
+        />
+
+        <div className="flex-1 overflow-y-auto">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/education" element={<Education />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/cv" element={<CV />} />
+          </Routes>
+        </div>
       </div>
-
     </div>
-
-    </div>
-  
-  )
+  );
 }
 
 export default App

@@ -1,68 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
+import { useSelector } from 'react-redux'
+import { pageBg, text } from "../../theme/backgrounds" 
 
 const CV = () => {
-  const [file, setFile] = useState(null);
-  const [preview, setPreview] = useState("");
+  const theme = useSelector((state) => state.theme.theme)
+  const t = text(theme)
+  const [file, setFile] = useState(null)
+  const [preview, setPreview] = useState("")
 
   const handleChange = (e) => {
-    const selectedFile = e.target.files[0];
-
-    if (selectedFile) {
-      setFile(selectedFile);
-      setPreview(URL.createObjectURL(selectedFile));
-    }
-  };
-
-  const saveToLocalStorage = (file) => {
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
-
-    reader.onload = () => {
-      localStorage.setItem("cv", reader.result);
-      console.log("CV saved to localStorage!");
-    };
-  };
-
-  useEffect(() => {
-    const savedCV = localStorage.getItem("cv");
-
-    if (savedCV) {
-      setPreview(savedCV);
-    }
-  }, []);
+    const selectedFile = e.target.files[0]
+    if (selectedFile) { setFile(selectedFile); setPreview(URL.createObjectURL(selectedFile)) }
+  }
 
   const handleUpload = () => {
-    if (!file) return alert("Select a file");
+    if (!file) return alert("Select a file")
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => localStorage.setItem("cv", reader.result)
+  }
 
-    saveToLocalStorage(file);
-  };
+  useEffect(() => {
+    const savedCV = localStorage.getItem("cv")
+    if (savedCV) setPreview(savedCV)
+  }, [])
 
   return (
-    <div className="text-center mt-10 w-full px-6">
+    <div className="min-h-screen text-center pt-10 w-full px-6 transition-colors duration-300"
+      style={{ background: pageBg(theme) }}>
+      <h1 className="text-3xl font-bold mb-6" style={{ color: t.heading }}>My CV</h1>
       <div className="flex flex-col items-center gap-3 mt-10">
-        <label className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-lg cursor-pointer hover:bg-blue-700">
+        <label className="flex items-center gap-2 bg-yellow-400 text-black px-5 py-2 rounded-lg cursor-pointer hover:bg-yellow-500 transition font-semibold">
           📄 Choose CV
           <input type="file" className="hidden" onChange={handleChange} />
         </label>
-
-        <button
-          className="border px-5 py-2 rounded-lg hover:bg-gray-100"
-          onClick={handleUpload}
-        >
+        <button onClick={handleUpload}
+          className="px-5 py-2 rounded-lg border transition"
+          style={{
+            borderColor: theme === 'dark' ? '#4b5563' : '#d1d5db',
+            color: t.heading,
+            background: theme === 'dark' ? 'rgba(255,255,255,0.05)' : '#ffffff'
+          }}>
           Upload
         </button>
       </div>
-
       {preview && (
-        <iframe
-          src={preview}
-          title="CV Preview"
-          className="w-full h-[1000px] mt-6 border rounded-lg shadow"
-        />
+        <iframe src={preview} title="CV Preview"
+          className="w-full h-[1000px] mt-6 rounded-lg shadow"
+          style={{ border: `1px solid ${theme === 'dark' ? '#4b5563' : '#c4b5fd'}` }} />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default CV;
+export default CV

@@ -1,116 +1,62 @@
-import React from "react";
+import React from "react"
+import { useSelector } from 'react-redux'
+import { pageBg, text, card, input } from '../../theme/backgrounds'
 
 const Contact = () => {
+  const theme = useSelector((state) => state.theme.theme)
+  const t = text(theme)
+  const inp = input(theme)
+
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-8 md:p-16">
-      {/* Header */}
+    <div className="min-h-screen p-8 transition-colors duration-300"
+      style={{ background: pageBg(theme) }}>
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-          Contact Me
-        </h1>
-        <p className="mt-4 text-gray-600 dark:text-gray-400">
+        <h1 className="text-4xl font-bold" style={{ color: t.heading }}>Contact Me</h1>
+        <p className="mt-4" style={{ color: t.muted }}>
           Feel free to reach out for collaborations or just a friendly hello 👋
         </p>
       </div>
-
-      {/* Content */}
-      <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-        {/* Left Side - Contact Info */}
+      <div className="contact-grid">
         <div className="space-y-6">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-              📧 Email
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400">
-              khattakd87@gmail.com
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-              📞 Phone
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400">03025454696</p>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-              📍 Location
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400">
-              Islamabad, Pakistan
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-              💼 LinkedIn
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400">
-              www.linkedin.com/in/daniyal-khattak-7628a339b
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-              🧑‍💻 GitHub
-            </h2>
-            <a
-              href="https://github.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-400 hover:text-yellow-400 transition"
-            >
-              daniyalgithubk
-            </a>
-          </div>
+          {[
+            { icon: "📧", label: "Email", value: "khattakd87@gmail.com" },
+            { icon: "📞", label: "Phone", value: "03025454696" },
+            { icon: "📍", label: "Location", value: "Islamabad, Pakistan" },
+            { icon: "💼", label: "LinkedIn", value: "linkedin.com/in/daniyal-khattak-7628a339b" },
+            { icon: "🧑‍💻", label: "GitHub", value: "daniyalgithubk" },
+          ].map((item, i) => (
+            <div key={i}>
+              <h2 className="text-xl font-semibold" style={{ color: t.heading }}>{item.icon} {item.label}</h2>
+              <p style={{ color: t.muted }}>{item.value}</p>
+            </div>
+          ))}
         </div>
-
-        {/* Right Side - Form */}
-        <form className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md space-y-6">
+        <form className="p-8 rounded-lg shadow-md space-y-6" style={{ background: card(theme) }}>
+          {[
+            { label: "Name", type: "text", placeholder: "Your Name" },
+            { label: "Email", type: "email", placeholder: "your@email.com" },
+          ].map((field, i) => (
+            <div key={i}>
+              <label className="block mb-2" style={{ color: t.body }}>{field.label}</label>
+              <input type={field.type} placeholder={field.placeholder}
+                className="w-full p-3 rounded-md border focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                style={{ background: inp.background, borderColor: inp.border, color: inp.color }} />
+            </div>
+          ))}
           <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              className="w-full p-3 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              placeholder="Your Name"
-            />
+            <label className="block mb-2" style={{ color: t.body }}>Message</label>
+            <textarea rows="4" placeholder="Your Message..."
+              className="w-full p-3 rounded-md border focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              style={{ background: inp.background, borderColor: inp.border, color: inp.color }} />
           </div>
-
-          <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              className="w-full p-3 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              placeholder="your@email.com"
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-2">
-              Message
-            </label>
-            <textarea
-              rows="4"
-              className="w-full p-3 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              placeholder="Your Message..."
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-yellow-400 text-black font-semibold py-3 rounded-md hover:bg-yellow-500 transition duration-300"
-          >
+          <button type="submit"
+            className="w-full bg-yellow-400 text-black font-semibold py-3 rounded-md hover:bg-yellow-500 transition duration-300">
             Send Message
           </button>
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

@@ -1,4 +1,97 @@
 @import "tailwindcss";
-
-
 @custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  .sidebar-visible {
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar-visible {
+    display: none;
+  }
+}
+
+
+.projects-grid {
+  display: grid;
+  gap: 2rem;
+  justify-items: center;
+  padding: 2.5rem;
+}
+
+@media (max-width: 1023px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 320px) {
+  .projects-grid {
+    padding-top: 5rem;
+  }
+}
+
+
+.contact-grid {
+  display: grid;
+  gap: 3rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+@media (max-width: 1023px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.contact-grid {
+  display: grid;
+  gap: 3rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+@media (max-width: 1023px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.contact-grid > * {
+  width: 100%;
+}

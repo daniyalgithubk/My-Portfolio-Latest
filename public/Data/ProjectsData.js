@@ -1,9 +1,9 @@
 const ProjectsData = [
     {
         id:1,
-        name : "Language Learning ",
-        technology : "React js",
-        img : "/Images/Language.png"
+        name : "Code crafting hub ",
+        technology : "Next js",
+        img : "/Images/CodeCraftingHub.png"
     },
      {
         id : 2,
@@ -13,9 +13,9 @@ const ProjectsData = [
      },
       {
         id : 3,
-        name : "Weather App",
-         technology : "React js",
-         img : "/Images/weather.png"
+         name : "Bookstore",
+        technology : "React js",
+        img : "/Images/book.png"
       },
       {
         id : 4,
@@ -37,15 +37,15 @@ const ProjectsData = [
       },
       {
         id : 7,
-        name : "Bookstore",
-        technology : "React js",
-        img : "/Images/book.png"
+        name : "Weather App",
+         technology : "React js",
+         img : "/Images/weather.png"
       },
       {
         id : 8,
-        name : "Color-Picker-Extension",
-         technology : "React js",
-         img:"/Images/color-picker.png"
+         name : "Language Learning ",
+        technology : "React js",
+        img : "/Images/Language.png"
       },
       {
         id : 9,
@@ -85,9 +85,9 @@ const ProjectsData = [
       },
       {
         id : 15,
-        name : "Resturant App",
+        name : "Color-Picker-Extension",
          technology : "React js",
-          img : "/Images/resturant.png"
+         img:"/Images/color-picker.png"
       }
 ]
 
