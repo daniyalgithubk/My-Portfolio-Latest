@@ -14,16 +14,18 @@ const Skills = () => {
       </h1>
       <div className="space-y-8">
         {[
-          { name: "JavaScript", level: 80 },
-          { name: "React", level: 75 },
+          { name: "React js", level: 75 },
+          { name: "Next js", level: 70 },
+          { name: "Javascript", level: 80 },
           { name: "HTML/CSS", level: 90 },
           { name: "Node.js", level: 70 },
           { name: "Git", level: 85 },
-          { name: "Redux", level: 65 },
+          { name: "zustand", level: 65 },
+          { name: "Redux Toolkit", level: 65 },
+          { name: "Context API", level: 70 },
           { name: "Tailwind CSS", level: 80 },
           { name: "Bootstrap", level: 75 },
           { name: "Material UI", level: 70 },
-          { name: "OOP", level: 85 },
         ].map((skill, index) => (
           <div key={index} className="rounded-lg p-6 shadow-md hover:shadow-xl transition duration-300"
             style={{ background: card(theme) }}>
