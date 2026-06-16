@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { pageBg, text } from '../../theme/backgrounds'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   const theme = useSelector((state) => state.theme.theme)
@@ -118,30 +119,33 @@ const Home = () => {
         transform: visible ? "translateY(0)" : "translateY(30px)",
         transition: "opacity 0.8s ease 0.9s, transform 0.8s ease 0.9s",
       }}>
-        <a href="/contact"
+        <Link
+          to="/contact"
           style={{
             background: "#facc15", color: "#000", padding: "12px 28px",
             borderRadius: "8px", fontWeight: "600", textDecoration: "none",
             transition: "transform 0.2s ease, box-shadow 0.2s ease",
             boxShadow: "0 4px 15px rgba(250, 204, 21, 0.3)",
           }}
-          onMouseEnter={e => { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = "0 8px 25px rgba(250, 204, 21, 0.5)" }}
-          onMouseLeave={e => { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = "0 4px 15px rgba(250, 204, 21, 0.3)" }}
+          onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 25px rgba(250, 204, 21, 0.5)" }}
+          onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 15px rgba(250, 204, 21, 0.3)" }}
         >
           Contact Me
-        </a>
-        <a href="/projects"
+        </Link>
+
+        <Link
+          to="/projects"
           style={{
             background: "transparent", color: t.heading, padding: "12px 28px",
             borderRadius: "8px", fontWeight: "600", textDecoration: "none",
             border: `2px solid ${theme === "dark" ? "#4b5563" : "#c4b5fd"}`,
             transition: "transform 0.2s ease, border-color 0.2s ease",
           }}
-          onMouseEnter={e => { e.target.style.transform = "translateY(-2px)"; e.target.style.borderColor = "#facc15" }}
-          onMouseLeave={e => { e.target.style.transform = "translateY(0)"; e.target.style.borderColor = theme === "dark" ? "#4b5563" : "#c4b5fd" }}
+          onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.borderColor = "#facc15" }}
+          onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.borderColor = theme === "dark" ? "#4b5563" : "#c4b5fd" }}
         >
           View Projects
-        </a>
+        </Link>
       </div>
 
       {/* Floating animation keyframes */}
