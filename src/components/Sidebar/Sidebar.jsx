@@ -9,6 +9,7 @@ import { pageBg } from "../../theme/backgrounds";
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const dispatch = useDispatch();
   const theme = useSelector((state) => state.theme.theme);
+  const accent = theme === "dark" ? "#facc15" : "#a78bfa";
 
   return (
     <div
@@ -50,7 +51,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         }
         .profile-img:hover {
           transform: scale(1.08);
-          box-shadow: 0 0 0 3px #facc15;
+          box-shadow: 0 0 0 3px ${accent};
         }
 
         .theme-btn {
@@ -78,7 +79,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           position: absolute;
           left: 0; top: 0;
           width: 3px; height: 100%;
-          background: #facc15;
+          background: ${accent};
           border-radius: 0 2px 2px 0;
           transform: scaleY(0);
           transition: transform 0.2s ease;
@@ -117,7 +118,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <img
           src="/Images/Daniyal.jpeg"
           alt="Profile"
-          className="profile-img w-16 h-16 rounded-full ring-2 ring-yellow-400"
+          className="profile-img w-16 h-16 rounded-full ring-2"
+          style={{ boxShadow: `0 0 0 2px ${accent}` }}
         />
         <button
           className="theme-btn text-3xl p-2 rounded-full hover:bg-white/10"
@@ -136,27 +138,28 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         >
           Daniyal Khattak
         </h2>
-        <p
-          style={{ color: theme === "dark" ? "#9ca3af" : "#4b5563" }}
-          className="mt-1"
-        >
+        <p style={{ color: theme === "dark" ? "#9ca3af" : "#4b5563" }} className="mt-1">
           React JS Developer
         </p>
         <p style={{ color: theme === "dark" ? "#9ca3af" : "#4b5563" }}>
           Islamabad, Pakistan
         </p>
-        <div className="divider-bar mt-4 mx-auto h-0.5 bg-yellow-400 rounded-full" />
+        <div
+          className="divider-bar mt-4 mx-auto h-0.5 rounded-full"
+          style={{ background: accent }}
+        />
       </div>
 
       {/* Navigation */}
       <nav className="flex flex-col space-y-2 mt-10 relative">
         {[
-          { name: "Home",      path: "/" },
-          { name: "Education", path: "/education" },
-          { name: "Projects",  path: "/projects" },
-          { name: "Skills",    path: "/skills" },
-          { name: "Contact",   path: "/contact" },
-          { name: "CV",        path: "/cv" },
+          { name: "Home",       path: "/" },
+          { name: "Skills",     path: "/skills" },
+          { name: "Experience", path: "/experience" },
+          { name: "Projects",   path: "/projects" },
+          { name: "Education",  path: "/education" },
+          { name: "Contact",    path: "/contact" },
+          { name: "CV",         path: "/cv" },
         ].map((item, index) => (
           <NavLink
             key={index}
@@ -164,11 +167,14 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             end={item.path === "/"}
             className={({ isActive }) =>
               `nav-link px-6 py-3 rounded-md ${
-                isActive ? "bg-yellow-400 text-black font-semibold active-link" : "hover:bg-white/10"
+                isActive ? "font-semibold active-link" : "hover:bg-white/10"
               }`
             }
             style={({ isActive }) => ({
-              color: isActive ? "#000000" : theme === "dark" ? "#d1d5db" : "#1a1a2e",
+              background: isActive ? accent : "transparent",
+              color: isActive
+                ? theme === "dark" ? "#000000" : "#ffffff"
+                : theme === "dark" ? "#d1d5db" : "#1a1a2e",
               animation: `fadeInDown 0.4s ease-out ${0.4 + index * 0.07}s both`,
             })}
           >

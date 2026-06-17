@@ -33,7 +33,7 @@ const Skills = () => {
             <div className="w-full rounded-full h-4"
               style={{ background: theme === 'dark' ? '#374151' : '#ede9fe' }}>
               <div className="bg-yellow-400 h-4 rounded-full transition-all duration-500"
-                style={{ width: `${skill.level}%` }} />
+                style={{ width: `${skill.level}%`, background: theme === "dark" ? "#facc15" : "#a78bfa" }} />
             </div>
             <p className="text-sm mt-1" style={{ color: t.muted }}>{skill.level}%</p>
           </div>

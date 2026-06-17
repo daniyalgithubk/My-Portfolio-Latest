@@ -30,7 +30,15 @@ const CV = () => {
       style={{ background: pageBg(theme) }}>
       <h1 className="text-3xl font-bold mb-6" style={{ color: t.heading }}>My CV</h1>
       <div className="flex flex-col items-center gap-3 mt-10">
-        <label className="flex items-center gap-2 bg-yellow-400 text-black px-5 py-2 rounded-lg cursor-pointer hover:bg-yellow-500 transition font-semibold">
+       <label
+  className="flex items-center gap-2 px-5 py-2 rounded-lg cursor-pointer transition font-semibold"
+  style={{
+    background: theme === "dark" ? "#facc15" : "#a78bfa",
+    color: theme === "dark" ? "#000000" : "#ffffff",
+  }}
+  onMouseEnter={e => e.currentTarget.style.opacity = "0.85"}
+  onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+>
           📄 Choose CV
           <input type="file" className="hidden" onChange={handleChange} />
         </label>

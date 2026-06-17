@@ -7,6 +7,7 @@ import Contact from './components/Contact/Contact'
 import Projects from './components/Projects/Projects'
 import Skills from './components/Skills/Skills'
 import CV from './components/CV/CV'
+import Experience from './components/Experience/Experience'
 import { Routes, Route } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import { useEffect , useState } from "react";
@@ -32,9 +33,10 @@ function App() {
         <div className="flex-1 overflow-y-auto">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/projects" element={<Projects />} />
             <Route path="/skills" element={<Skills />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/education" element={<Education />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/cv" element={<CV />} />
           </Routes>
